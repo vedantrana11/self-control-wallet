@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 
-let timer; // ✅ global timer fix
+let timer; 
 
 function App() {
   const [account, setAccount] = useState("");
@@ -13,7 +13,7 @@ function App() {
   const [balance, setBalance] = useState("0");
   const [remaining, setRemaining] = useState(0);
 
-  // 🔗 Connect wallet
+  
   const connectWallet = async () => {
     const acc = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -23,7 +23,7 @@ function App() {
     toast.success("Wallet connected 🚀");
   };
 
-  // 📊 Load contract data (FIXED)
+
   const loadData = async (user) => {
     try {
       const contract = await getContract();
@@ -39,7 +39,7 @@ function App() {
     }
   };
 
-  // ⏳ Timer (FIXED)
+
   const updateTimer = (unlockTime) => {
     if (timer) clearInterval(timer);
 
@@ -56,7 +56,7 @@ function App() {
     }, 1000);
   };
 
-  // 💸 Deposit (FIXED)
+
   const deposit = async () => {
     try {
       const contract = await getContract();
@@ -72,7 +72,7 @@ function App() {
 
       toast.success("Funds Locked 🔒");
 
-      loadData(account); // ✅ refresh data
+      loadData(account); 
 
     } catch (err) {
       console.log("ERROR:", err);
@@ -80,7 +80,7 @@ function App() {
     }
   };
 
-  // 💸 Withdraw (FIXED)
+
   const withdraw = async () => {
     try {
       const contract = await getContract();
@@ -89,7 +89,7 @@ function App() {
 
       toast.success("Withdrawn 💸");
 
-      loadData(account); // ✅ refresh after withdraw
+      loadData(account); 
 
     } catch {
       toast.error("Still locked ⏳");
